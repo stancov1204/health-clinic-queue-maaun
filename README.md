@@ -3,7 +3,7 @@
 A simple Flask web app for Maryam Abacha American University of Nigeria (MAAUN) clinic.
 
 **What the app does:**
-- Patients register with name, age and complaint
+- Patients register with name and surname, age and complaint
 - Waiting list uses FIFO Queue (first patient served first)
 - Receptionist clicks "Call Next Patient"
 - Shows how many patients were seen today (with real date & time)
