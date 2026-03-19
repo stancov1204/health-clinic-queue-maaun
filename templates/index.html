@@ -1,42 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAUUN Clinic Queue</title>
+
     <style>
-        body { 
-            font-family: Arial; 
-            text-align: center; 
-            background: #f4f6f8; /* new small change */
-       }
-        ul { list-style: none; padding: 0; }
-        li { 
-            background: #f0f0f0; 
-            margin: 10px; 
-            padding: 10px; 
-            border-radius: 8px;
-            word-wrap: break-word; /* new small change */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 20px;
         }
-        button { 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            margin: 10px; 
-            cursor: pointer; /* new small change */
-       } 
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: #444;
+        }
+
+        .queue-count {
+            color: #2c7be5;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        li {
+            background: #f0f0f0;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 15px;
+            word-wrap: break-word;
+        }
+
+        li:hover {
+            background: #e6e6e6;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 15px;
+        }
+
+        .btn-green {
+            background: #28a745;
+        }
+
+        .btn-green:hover {
+            background: #218838;
+        }
+
+        .btn-red {
+            background: #dc3545;
+        }
+
+        .btn-red:hover {
+            background: #c82333;
+        }
     </style>
 </head>
+
 <body>
-   <h1 style="margin-bottom:15px;">🏥 Health Clinic Queue Manager MAUUN</h1>
-   <h2 style="padding-top:10px;">Patients Waiting: {{ queue|length }}</h2>
-    
+
+<div class="container">
+    <h1>🏥 MAUUN Clinic Queue</h1>
+
+    <h2 class="queue-count">Patients Waiting: {{ queue|length }}</h2>
+
     <ul>
         {% for patient in queue %}
             <li>{{ patient.get_info() }}</li>
         {% endfor %}
     </ul>
-    
-   <h2 style="text-align:center;">✅ Patients Seen Today: {{ seen_today }}</h2>
-    
-    <a href="/register"><button style="background:green;color:white">Register New Patient</button></a>
-    <a href="/serve" title="Serve the next patient in queue" style="background:red;color:white;padding:10px 20px;border-radius:5px;text-decoration:none;display:inline-block;">Call Next Patient</a>
+
+    <h2>✅ Seen Today: {{ seen_today }}</h2>
+
+    <div class="buttons">
+        <a href="/register" class="btn btn-green">Register Patient</a>
+        <a href="/serve" class="btn btn-red" title="Serve the next patient">Call Next</a>
+    </div>
+</div>
+
 </body>
 </html>
